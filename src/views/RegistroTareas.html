@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>GEMAK</title>
+    <!------ JQUERY PARA USAR AJAX ----->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+
+    <script type="text/javascript" src="js/NuevaTarea.js"></script>
+</head>
+
+<body>
+    <ion-app>
+
+        <ion-header>
+            <ion-toolbar color="dark">
+                <ion-buttons slot="start">
+                    <ion-button href="/">
+                        <ion-icon name="home"></ion-icon>
+                    </ion-button>
+                </ion-buttons>
+                <ion-title>Proyectos</ion-title>
+                <ion-buttons slot="end">
+                    <p style="margin-right: 2.5em;">Total: <span id="total"></span></p>
+                </ion-buttons>
+            </ion-toolbar>
+        </ion-header>
+
+        <ion-content>
+            <ion-grid>
+                <ion-row>
+                    <ion-col size-md="4" offset-md="4">
+                        <!-- Ionic Card -->
+                        <ion-card color="light">
+                            <ion-card-header color="light">
+                                <ion-card-title>
+                                    Nueva tarea
+                                </ion-card-title>
+                            </ion-card-header>
+                            <ion-card-content>
+
+                                <ion-item margin-vertical>
+                                    <ion-label position="floating">Tarea</ion-label>
+                                    <ion-input type="text" id="Tarea"> </ion-input>
+                                </ion-item>
+
+                                <ion-item>
+                                    <ion-label position="floating">Descripción</ion-label>
+                                    <ion-input type="text" id="Descripcion"></ion-input>
+                                </ion-item>
+
+                                <ion-item>
+                                    <ion-label position="floating">Grupo</ion-label>
+                                    <ion-input type="text" id="Grupo"></ion-input>
+                                </ion-item>
+
+                                <ion-item>
+                                    <ion-label position="floating">Inicio</ion-label>
+                                    <ion-input type="text" id="Inicio"></ion-input>
+                                </ion-item>
+
+                                <ion-item>
+                                    <ion-label>Responsable</ion-label>
+                                    <ion-select id="Responsable">
+                                        <ion-select-option value="Mauricio">Mauricio</ion-select-option>
+                                        <ion-select-option value="Perla">Perla</ion-select-option>
+                                    </ion-select>
+                                </ion-item>
+
+                                <ion-item>
+                                    <ion-label>Soporte</ion-label>
+                                    <ion-select id="Soporte">
+                                        <ion-select-option value="MM">MM</ion-select-option>
+                                        <ion-select-option value="GM">GM</ion-select-option>
+                                    </ion-select>
+                                </ion-item>
+
+                                <ion-item>
+                                    <ion-label position="floating">Cumplimiento</ion-label>
+                                    <ion-input type="number" id="Cumplimiento"></ion-input>
+                                </ion-item>
+
+                                <ion-item>
+                                    <ion-label>Vencimiento</ion-label>
+                                    <ion-input id="Vencimiento"></ion-input>
+                                    <ion-button slot="end" fill="clear" id="open-Vencimiento">
+                                        <ion-icon icon="calendar"></ion-icon>
+                                    </ion-button>
+                                    <ion-popover trigger="open-Vencimiento" show-backdrop="false">
+                                        <ion-datetime presentation="date" id="CalendarioVencimiento"></ion-datetime>
+                                    </ion-popover>
+                                </ion-item>
+
+                                <ion-item margin-vertical>
+                                    <ion-label position="floating">Notas</ion-label>
+                                    <ion-textarea id="Notas"></ion-textarea>
+                                </ion-item>
+
+                                <div margin-vertical text-right>
+                                    <ion-button id="Boton" onclick="Registrar()" >
+                                        <ion-icon name="add-circle" slot="start"></ion-icon>
+                                        Guardar
+                                    </ion-button>
+                                    <ion-button fill="outline" color="danger" id="button-cancel">
+                                        <ion-icon name="trash" slot="start"></ion-icon>
+                                        Limpiar
+                                    </ion-button>
+                                </div>
+                            </ion-card-content>
+                        </ion-card>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size-md="4" offset-md="4">
+                        <ion-list id="product-list"></ion-list>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size-md="4" offset-md="4">
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-content>
+    </ion-app>
+
+
+
+
+</body>
+
+</html>

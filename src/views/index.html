@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>GEMAK</title>
+    <!------ JQUERY PARA USAR AJAX ----->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+
+    <script type="text/javascript" src="js/Tablero.js"></script>
+</head>
+
+<body onload="MostrarProyectos()">
+    <ion-app>
+
+        <!-- Cabezera -->
+        <ion-header>
+            <ion-toolbar color="dark">
+                <ion-buttons slot="start">
+                    <ion-button>
+                        <ion-icon name="home"></ion-icon>
+                    </ion-button>
+                </ion-buttons>
+                <ion-title>Proyectos</ion-title>
+                <ion-buttons slot="end"  >
+                    <p style="margin-right: 2.5em;">Total: <span id="total"></span></p>
+                </ion-buttons>
+            </ion-toolbar>
+        </ion-header>
+
+        <!-- Contenido -->
+        <ion-content>
+            <div>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col>
+                            <ion-list id="ListaMaestra">
+
+
+                            </ion-list>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </div>
+
+        </ion-content>
+
+        <!-- Footer  -->
+        <ion-footer class="ion-no-border">
+            <ion-toolbar>
+                <ion-button expand="block" color="dark" id="trigger-button">Nuevo Proyecto</ion-button>
+            </ion-toolbar>
+        </ion-footer>
+
+        <!-- Modal nuevo Proyecto -->
+        
+        <ion-modal trigger="trigger-button" id="ModalNuevoProyecto">
+            <ion-header>
+                <ion-toolbar color="dark">
+                  <ion-title>NUEVO PROYECTO </ion-title>
+                  <ion-buttons slot="primary">
+                    <ion-button onClick="dismissModal()">
+                      <ion-icon slot="icon-only" name="close"></ion-icon>
+                    </ion-button>
+                  </ion-buttons>
+                </ion-toolbar>
+              </ion-header>
+            <ion-content>
+                <ion-card-content>
+                    <ion-item margin-vertical>
+                        <ion-label position="floating">Nombre proyecto</ion-label>
+                        <ion-input type="text" id="NombreProyecto"> </ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label position="floating">Descripción</ion-label>
+                        <ion-input type="text" id="DescripcionProyecto"></ion-input>
+                    </ion-item>
+ 
+                    <div margin-vertical text-right>
+                        <ion-button id="Boton" onclick="RegistrarProyecto()">
+                            <ion-icon name="add-circle" slot="start"></ion-icon>
+                            Guardar
+                        </ion-button>
+                        <ion-button fill="outline" color="danger" id="button-cancel" onclick="LimpiarFormProyectos()">
+                            <ion-icon name="trash" slot="start"></ion-icon>
+                            Limpiar
+                        </ion-button>
+                    </div>
+                </ion-card-content>
+            </ion-content>
+        </ion-modal>
+    </ion-app>
+
+ 
+
+    <!-- Bloque oculto  -->
+    <div id="Item-Borrador" style="display: none;">
+        <ion-item  id="indiceProyecto">
+            <ion-col>
+                <ion-card>
+                    <ion-card-header>
+                        <ion-card-title id="Titulo-Borrador">Nombre Proyecto</ion-card-title>
+                        <!--  <ion-card-title>Card Title</ion-card-title> -->
+                    </ion-card-header>
+    
+                    <ion-card-content id="Contenido-Borrador">
+                        Keep close to Nature's heart... and break clear away, once in awhile,
+                        and climb a mountain or spend a week in the woods. Wash your spirit clean.
+                    </ion-card-content>
+                    <ion-input type="text" id="Footer-Borrador" readonly></ion-input>
+                </ion-card>
+            </ion-col>
+             
+        </ion-item>
+    </div>
+
+
+</body>
+
+</html>
