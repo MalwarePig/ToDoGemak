@@ -7,7 +7,7 @@ git init  >> Inicializar proyecto para git
 git status >> Muestra el estado de los archivos
 git add >> Agrega archivos para ser gestionados (add index.html o  add .)
 git commit -m "Mensaj" >> Crea un primer punto de control del codigo 
-git remote add origin https://github.com/MalwarePig/SIGG
+git remote add origin https://github.com/MalwarePig/ToDoGemak
 git push origin master (envia el proyecto al servidor)
 
 ================================= COMANDOS GIT HERRAMIENTAS ==============================
@@ -16,6 +16,6 @@ git diff index.html (Muestra las cambios entre versiones)
 
 ================================= COMANDOS GIT DOWN ======================================
 Git clone link (Descargar el repositorio)
-git pull https://github.com/MalwarePig/SIGG >>(Obtiene actualizaciones en línea y las fusiona con tu trabajo local); 
+git pull https://github.com/MalwarePig/ToDoGemak >>(Obtiene actualizaciones en línea y las fusiona con tu trabajo local); 
 
 
