@@ -9,10 +9,13 @@
     <!------ JQUERY PARA USAR AJAX ----->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-
+     <!-----------------------------------------------     IONIC     ---------------------------------------------------------------->
     <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+     <!-----------------------------------------------     FECHAS MOMENTS     ---------------------------------------------------------------->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+     <!-----------------------------------------------     JS     ---------------------------------------------------------------->
     <script type="text/javascript" src="js/ListaTareas.js"></script>
   
 </head>
@@ -42,22 +45,74 @@
                     <ion-row>
                         <ion-col>
                             <ion-list id="ListaMaestra">
-
-
+ 
                             </ion-list>
                         </ion-col>
                     </ion-row>
                 </ion-grid>
             </div>
-
         </ion-content>
 
         <!-- Footer  -->
         <ion-footer class="ion-no-border">
             <ion-toolbar>
                 <ion-button expand="block" color="dark" href="/FormNuevaTarea">Nueva Tarea</ion-button>
+                
             </ion-toolbar>
         </ion-footer>  
+ 
+        <!-- Modal nuevo Proyecto -->
+        <ion-modal trigger="trigger-button" id="ModalNuevoProyecto">
+            <ion-header>
+                <ion-toolbar color="dark">
+                  <ion-title id="TituloTareaModal">NUEVO PROYECTO </ion-title>
+                  <ion-buttons slot="primary">
+                    <ion-button onClick="dismissModal()">
+                      <ion-icon slot="icon-only" name="close"></ion-icon>
+                    </ion-button>
+                  </ion-buttons>
+                </ion-toolbar>
+              </ion-header>
+            <ion-content>
+                <ion-card-content>
+                    <ion-item>
+                        <ion-label position="fixed">Descripción</ion-label>
+                        <ion-input readonly type="text" id="Mod_Descripcion"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label position="fixed">Grupo</ion-label>
+                        <ion-input readonly type="text" id="Mod_Grupo"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label position="fixed">Inicio</ion-label>
+                        <ion-input readonly type="text" id="Mod_Inicio"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label position="fixed">Responsable</ion-label>
+                        <ion-input readonly type="text" id="Mod_Responsable"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label position="fixed">Soporte</ion-label>
+                        <ion-input readonly type="text" id="Mod_Soporte"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label position="fixed">Vencimiento</ion-label>
+                        <ion-input readonly type="text" id="Mod_Vencimiento"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label position="fixed">Notas</ion-label>
+                        <ion-input readonly type="text" id="Mod_Notas"></ion-input>
+                    </ion-item>
+
+                </ion-card-content>
+            </ion-content>
+        </ion-modal>
     </ion-app>
 
 
@@ -68,54 +123,41 @@
             <ion-col>
                 <ion-card>
                     <ion-card-header>
-                        <ion-card-title id="Titulo-Borrador">Nombre Proyecto</ion-card-title>
-                        <!--  <ion-card-title>Card Title</ion-card-title> -->
+                        <ion-card-title id="Tarea">Nombre Proyecto</ion-card-title>
                     </ion-card-header>
 
                     <ion-card-content>
-                        <ion-item>
-                            <ion-label position="fixed">Tarea</ion-label>
-                            <ion-input type="text" id="Tarea"></ion-input>
+                        <ion-item> 
+                            <ion-input  type="text" id="Descripcion"></ion-input>
+                        </ion-item>
+
+                        <ion-item style="display: none;"> 
+                            <ion-input readonly type="text" id="Grupo"></ion-input>
+                        </ion-item>
+
+                        <ion-item style="display: none;"> 
+                            <ion-input readonly type="text" id="Inicio"></ion-input>
+                        </ion-item>
+
+                        <ion-item style="display: none;"> 
+                            <ion-input readonly type="text" id="Responsable"></ion-input>
+                        </ion-item>
+
+                        <ion-item style="display: none;"> 
+                            <ion-input readonly type="text" id="Soporte"></ion-input>
+                        </ion-item>
+
+                        <ion-item style="display: none;"> 
+                            <ion-input readonly type="text" id="Vencimiento"></ion-input>
+                        </ion-item>
+
+                        <ion-item margin-vertical style="display: none;"> 
+                            <ion-textarea id="Notas"></ion-textarea>
                         </ion-item>
 
                         <ion-item>
-                            <ion-label position="fixed">Descripcion</ion-label>
-                            <ion-input type="text" id="Descripcion"></ion-input>
-                        </ion-item>
-
-                        <ion-item>
-                            <ion-label position="fixed">Grupo</ion-label>
-                            <ion-input type="text" id="Grupo"></ion-input>
-                        </ion-item>
-
-                        <ion-item>
-                            <ion-label position="fixed">Inicio</ion-label>
-                            <ion-input type="text" id="Inicio"></ion-input>
-                        </ion-item>
-
-                        <ion-item>
-                            <ion-label position="fixed">Responsable</ion-label>
-                            <ion-input type="text" id="Responsable"></ion-input>
-                        </ion-item>
-
-                        <ion-item>
-                            <ion-label position="fixed">Soporte</ion-label>
-                            <ion-input type="text" id="Soporte"></ion-input>
-                        </ion-item>
-
-                        <ion-item>
-                            <ion-label position="fixed">Vencimiento</ion-label>
-                            <ion-input type="text" id="Vencimiento"></ion-input>
-                        </ion-item>
-
-                        <ion-item>
-                            <ion-label position="fixed">Notas</ion-label>
-                            <ion-input type="text" id="Notas"></ion-input>
-                        </ion-item>
-
-                        <ion-item>
-                            <ion-label position="fixed">Cumplimiento</ion-label>
-                            <ion-input type="text" id="Cumplimiento"></ion-input>
+                            <ion-label id="Cumplimiento" position="stacked"></ion-label> 
+                            <ion-progress-bar id="BarraCumplimiento"></ion-progress-bar>
                         </ion-item>
  
                     </ion-card-content>

@@ -37,7 +37,14 @@ function MostrarProyectos() {
                 document.querySelector("#indiceProyecto").setAttribute('href', '/MostrarFormulario'); 
                 var indiceProyecto = document.querySelector("#indiceProyecto");
                 indiceProyecto.id = 'indiceProyecto' + data[index].Proyecto;    
-                 
+
+         
+                document.querySelector("#BarraCumplimiento").value = (data[index].Completos/TotalRegistros);//Total de llenado
+                document.querySelector("#BarraCumplimiento").buffer= (data[index].Completos/TotalRegistros)+.10//Total de llenado + un porcentaje estimado 
+                console.log( "Proyecto: "+data[index].Proyecto+ " Valor: "+data[index].Completos)
+                var BarraCumplimiento = document.querySelector("#BarraCumplimiento"); 
+                BarraCumplimiento.id = 'BarraCumplimiento' + index;
+              
             }
 
         } //Funcion success
@@ -82,7 +89,4 @@ function LimpiarFormProyectos() {
     document.querySelector("#NombreProyecto").value = '';
     document.querySelector("#DescripcionProyecto").value = '';
 }
-
-function AbrirTarjeta(parametro) {
-    alert("Holi: " + parametro)
-}
+ 

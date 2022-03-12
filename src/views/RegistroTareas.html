@@ -9,15 +9,17 @@
     <!------ JQUERY PARA USAR AJAX ----->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-
+    <!-----------------------------------------------     IONIC     ---------------------------------------------------------------->
     <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
-
+    <!-----------------------------------------------     FECHAS MOMENTS     ---------------------------------------------------------------->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+    <!-----------------------------------------------     JS     ---------------------------------------------------------------->
     <script type="text/javascript" src="js/NuevaTarea.js"></script>
 </head>
 
-<body>
+<body onload="IniciarFecha()">
     <ion-app>
 
         <ion-header>
@@ -28,9 +30,7 @@
                     </ion-button>
                 </ion-buttons>
                 <ion-title>Proyectos</ion-title>
-                <ion-buttons slot="end">
-                    <p style="margin-right: 2.5em;">Total: <span id="total"></span></p>
-                </ion-buttons>
+                
             </ion-toolbar>
         </ion-header>
 
@@ -55,16 +55,23 @@
                                 <ion-item>
                                     <ion-label position="floating">Descripción</ion-label>
                                     <ion-input type="text" id="Descripcion"></ion-input>
-                                </ion-item>
-
-                                <ion-item>
-                                    <ion-label position="floating">Grupo</ion-label>
-                                    <ion-input type="text" id="Grupo"></ion-input>
-                                </ion-item>
+                                </ion-item> 
 
                                 <ion-item>
                                     <ion-label position="floating">Inicio</ion-label>
                                     <ion-input type="text" id="Inicio"></ion-input>
+                                </ion-item>
+
+                                <ion-item> 
+                                    <ion-label>Grupo</ion-label>
+                                    <ion-select id="Grupo">
+                                        <ion-select-option value="Hidraulica">Hidraulica</ion-select-option>
+                                        <ion-select-option value="Maquinado">Maquinado</ion-select-option>
+                                        <ion-select-option value="Mecánica">Mecánica</ion-select-option>
+                                        <ion-select-option value="Neumática">Neumática</ion-select-option>
+                                        <ion-select-option value="Pintura">Pintura</ion-select-option>
+                                        <ion-select-option value="Soldadura">Soldadura</ion-select-option>
+                                    </ion-select>
                                 </ion-item>
 
                                 <ion-item>
@@ -84,18 +91,18 @@
                                 </ion-item>
 
                                 <ion-item>
-                                    <ion-label position="floating">Cumplimiento</ion-label>
+                                    <ion-label position="floating">Avance</ion-label>
                                     <ion-input type="number" id="Cumplimiento"></ion-input>
                                 </ion-item>
 
                                 <ion-item>
-                                    <ion-label>Vencimiento</ion-label>
-                                    <ion-input id="Vencimiento"></ion-input>
+                                    <ion-label id="labelVencimiento">Vencimiento</ion-label>
+                               <!--      <ion-input id="Vencimiento"></ion-input> -->
                                     <ion-button slot="end" fill="clear" id="open-Vencimiento">
                                         <ion-icon icon="calendar"></ion-icon>
                                     </ion-button>
                                     <ion-popover trigger="open-Vencimiento" show-backdrop="false">
-                                        <ion-datetime presentation="date" id="CalendarioVencimiento"></ion-datetime>
+                                        <ion-datetime presentation="date" id="CalendarioVencimiento" onblur="Alerta()"></ion-datetime>
                                     </ion-popover>
                                 </ion-item>
 
@@ -105,11 +112,11 @@
                                 </ion-item>
 
                                 <div margin-vertical text-right>
-                                    <ion-button id="Boton" onclick="Registrar()" >
+                                    <ion-button id="Boton" onclick="Registrar()">
                                         <ion-icon name="add-circle" slot="start"></ion-icon>
                                         Guardar
                                     </ion-button>
-                                    <ion-button fill="outline" color="danger" id="button-cancel">
+                                    <ion-button fill="outline" color="danger" id="button-cancel" onclick="Limpiar()">
                                         <ion-icon name="trash" slot="start"></ion-icon>
                                         Limpiar
                                     </ion-button>

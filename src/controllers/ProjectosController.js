@@ -37,7 +37,7 @@ Controller.Proyectos = (req, res) => {
         //res.send('Metodo Get list');
         req.getConnection((err, conn) => {
             let Planta = req.session.planta; //obeter datos de un objeto Planta
-            conn.query("SELECT * FROM Proyectos", (err, data) => {
+            conn.query("SELECT distinct Proyecto,ProyectoDesc, (select count(*)  from Proyectos WHERE  Cumplimiento = 100) as Completos FROM Proyectos WHERE ProyectoDesc != ''", (err, data) => {
                 if (err) {
                     //res.json("Error json: " + err);
                     console.log('Error al registrar recepcion ' + err);

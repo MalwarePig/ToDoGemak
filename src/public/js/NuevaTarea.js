@@ -23,4 +23,24 @@ function Registrar() {
             window.location.href = "/MostrarFormulario";
         });
 }
- //,Descripcion,Grupo,Inicio
+
+function IniciarFecha() {
+    Inicio: document.querySelector("#Inicio").value = moment().format("DD-MM-YYYY");
+}
+//,Descripcion,Grupo,Inicio
+
+function Alerta() {
+    document.querySelector("#labelVencimiento").innerHTML = "Vencimiento: " + moment(document.querySelector("#CalendarioVencimiento").value).format("DD-MM-YYYY");
+}
+
+function Limpiar() {
+    document.querySelector("#Tarea").value = '';
+    document.querySelector("#Descripcion").value = '';
+    document.querySelector("#Grupo").value = '';
+    document.querySelector("#Inicio").value = '';
+    document.querySelector("#Responsable").value = '';
+    document.querySelector("#Soporte").value = '';
+    document.querySelector("#Cumplimiento").value = '';
+    document.querySelector("#labelVencimiento").innerHTML = "Vencimiento"
+    document.querySelector("#Notas").value = '';
+}
