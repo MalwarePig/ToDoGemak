@@ -7,7 +7,7 @@ const ProjectosController = require('../controllers/ProjectosController');
 //Acceder a login
 var reinicio = router.get('/', (req, res) => {
 	//res.send('holoo');
-	res.render('index.html');
+	res.render('Login.html');
 	
 });
 
@@ -27,6 +27,8 @@ router.get('/FormNuevaTarea', (req, res) => {
 });
 //Registra Nueva tarea
 router.post('/registrarTarea', ProjectosController.NuevaTarea);
+//Actualizar tarea
+router.post('/ActualizarTarea', ProjectosController.ActualizarTarea);
 //Lee las tareas del proyecto
 router.get('/ListarTareas/:param', ProjectosController.ListarTareas);
 //Muestra Pantalla de tareas de un proyecto
@@ -35,15 +37,21 @@ router.get('/ListarTareas/:param', ProjectosController.ListarTareas);
 router.get('/MostrarFormulario', (req, res) => { 
 	res.render('ListaTareas.html');
 });
-
  
-
 
 
 router.post('/registrarProyecto', ProjectosController.registrarProyecto);
 router.get('/Proyectos', ProjectosController.Proyectos);
+router.get('/tareasCompletas/:param', ProjectosController.tareasCompletas);
 
+//Carga pagina principal
+router.get('/Grafica', (req, res) => { 
+	res.render('Grafica.html');
+});
 
-
+//Lee las tareas del proyecto
+router.get('/EstaCategoria/:param', ProjectosController.EstaCategoria);
+//Lee las tareas del proyecto Por persona
+router.get('/EstaPersonal/:param', ProjectosController.EstaPersonal);
 module.exports = router;
  

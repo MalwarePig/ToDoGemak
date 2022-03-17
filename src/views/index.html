@@ -13,13 +13,14 @@
     <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
-
+  <!-----------------------------------------------     FECHAS MOMENTS     ---------------------------------------------------------------->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+  
     <script type="text/javascript" src="js/Tablero.js"></script>
 </head>
 
 <body onload="MostrarProyectos()">
     <ion-app>
-
         <!-- Cabezera -->
         <ion-header>
             <ion-toolbar color="dark">
@@ -29,7 +30,7 @@
                     </ion-button>
                 </ion-buttons>
                 <ion-title>Proyectos</ion-title>
-                <ion-buttons slot="end"  >
+                <ion-buttons slot="end">
                     <p style="margin-right: 2.5em;">Total: <span id="total"></span></p>
                 </ion-buttons>
             </ion-toolbar>
@@ -55,23 +56,23 @@
         <!-- Footer  -->
         <ion-footer class="ion-no-border">
             <ion-toolbar>
-                <ion-button expand="block" color="dark" id="trigger-button">Nuevo Proyecto</ion-button> 
+                <ion-button expand="block" color="dark" id="trigger-button">Nuevo Proyecto</ion-button>
             </ion-toolbar>
         </ion-footer>
 
         <!-- Modal nuevo Proyecto -->
-        
+
         <ion-modal trigger="trigger-button" id="ModalNuevoProyecto">
             <ion-header>
                 <ion-toolbar color="dark">
-                  <ion-title>NUEVO PROYECTO </ion-title>
-                  <ion-buttons slot="primary">
-                    <ion-button onClick="dismissModal()">
-                      <ion-icon slot="icon-only" name="close"></ion-icon>
-                    </ion-button>
-                  </ion-buttons>
+                    <ion-title>NUEVO PROYECTO </ion-title>
+                    <ion-buttons slot="primary">
+                        <ion-button onClick="dismissModal()">
+                            <ion-icon slot="icon-only" name="close"></ion-icon>
+                        </ion-button>
+                    </ion-buttons>
                 </ion-toolbar>
-              </ion-header>
+            </ion-header>
             <ion-content>
                 <ion-card-content>
                     <ion-item margin-vertical>
@@ -83,7 +84,35 @@
                         <ion-label position="floating">Descripción</ion-label>
                         <ion-input type="text" id="DescripcionProyecto"></ion-input>
                     </ion-item>
- 
+
+                    <ion-item>
+                        <ion-label id="labelInicio">Inicio</ion-label>
+                        <!--      <ion-input id="Inicio"></ion-input> -->
+                        <ion-button slot="end" fill="clear" id="open-Inicio">
+                            <ion-icon icon="calendar"></ion-icon>
+                        </ion-button>
+                        <ion-popover trigger="open-Inicio" show-backdrop="false" id="PopoverInicio">
+                            <ion-datetime presentation="date" id="CalendarioInicio">
+                               <!--  <ion-buttons slot="buttons">
+                                    <ion-button onclick="dismissCalendario('Inicio')">OK</ion-button>
+                                </ion-buttons> -->
+                            </ion-datetime>
+                        </ion-popover>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label id="labelVencimiento">Fin</ion-label>
+                        <!--      <ion-input id="Vencimiento"></ion-input> -->
+                        <ion-button slot="end" fill="clear" id="open-Vencimiento">
+                            <ion-icon icon="calendar"></ion-icon>
+                        </ion-button>
+                        <ion-popover trigger="open-Vencimiento" show-backdrop="false" id="PopoverFin">
+                            <ion-datetime presentation="date" id="CalendarioVencimiento">
+                                
+                            </ion-datetime>
+                        </ion-popover>
+                    </ion-item>
+
                     <div margin-vertical text-right>
                         <ion-button id="Boton" onclick="RegistrarProyecto()">
                             <ion-icon name="add-circle" slot="start"></ion-icon>
@@ -99,28 +128,38 @@
         </ion-modal>
     </ion-app>
 
- 
+
 
     <!-- Bloque oculto  -->
     <div id="Item-Borrador" style="display: none;">
-        <ion-item  id="indiceProyecto">
+        <ion-item id="indiceProyecto">
             <ion-col>
                 <ion-card>
                     <ion-card-header>
                         <ion-card-title id="Titulo-Borrador">Nombre Proyecto</ion-card-title>
                         <!--  <ion-card-title>Card Title</ion-card-title> -->
                     </ion-card-header>
-    
+
                     <ion-card-content id="Contenido-Borrador">
                         Keep close to Nature's heart... and break clear away, once in awhile,
                         and climb a mountain or spend a week in the woods. Wash your spirit clean.
                     </ion-card-content>
                     <ion-item>
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col>
+                                    <ion-label id="Cumplimiento" position="stacked"></ion-label>
+                                </ion-col>
+                                <ion-col>
+                                    <ion-label id="FechasProyecto" position="stacked"></ion-label>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid> 
                         <ion-progress-bar id="BarraCumplimiento"></ion-progress-bar>
                     </ion-item>
                 </ion-card>
             </ion-col>
-             
+
         </ion-item>
     </div>
 

@@ -47,6 +47,23 @@
                             </ion-card-header>
                             <ion-card-content>
 
+                                <ion-item> 
+                                    <ion-label>Categorias</ion-label>
+                                    <ion-select id="Grupo">
+                                        <ion-select-option value="Ajuste">Ajuste </ion-select-option>
+                                        <ion-select-option value="Cotización">Cotización </ion-select-option>
+                                        <ion-select-option value="Ensamble">Ensamble </ion-select-option>
+                                        <ion-select-option value="Hidraulica">Hidraulica</ion-select-option>
+                                        <ion-select-option value="Ingeniería">Ingeniería</ion-select-option>
+                                        <ion-select-option value="Maquinado">Maquinado</ion-select-option>
+                                        <ion-select-option value="Mecánica">Mecánica</ion-select-option>
+                                        <ion-select-option value="Neumática">Neumática</ion-select-option>
+                                        <ion-select-option value="Pintura">Pintura</ion-select-option>
+                                        <ion-select-option value="Soldadura">Soldadura</ion-select-option>
+                                        <ion-select-option value="Visita">Visita</ion-select-option>
+                                    </ion-select>
+                                </ion-item>
+
                                 <ion-item margin-vertical>
                                     <ion-label position="floating">Tarea</ion-label>
                                     <ion-input type="text" id="Tarea"> </ion-input>
@@ -60,19 +77,7 @@
                                 <ion-item>
                                     <ion-label position="floating">Inicio</ion-label>
                                     <ion-input type="text" id="Inicio"></ion-input>
-                                </ion-item>
-
-                                <ion-item> 
-                                    <ion-label>Grupo</ion-label>
-                                    <ion-select id="Grupo">
-                                        <ion-select-option value="Hidraulica">Hidraulica</ion-select-option>
-                                        <ion-select-option value="Maquinado">Maquinado</ion-select-option>
-                                        <ion-select-option value="Mecánica">Mecánica</ion-select-option>
-                                        <ion-select-option value="Neumática">Neumática</ion-select-option>
-                                        <ion-select-option value="Pintura">Pintura</ion-select-option>
-                                        <ion-select-option value="Soldadura">Soldadura</ion-select-option>
-                                    </ion-select>
-                                </ion-item>
+                                </ion-item> 
 
                                 <ion-item>
                                     <ion-label>Responsable</ion-label>
@@ -86,13 +91,13 @@
                                     <ion-label>Soporte</ion-label>
                                     <ion-select id="Soporte">
                                         <ion-select-option value="MM">MM</ion-select-option>
-                                        <ion-select-option value="GM">GM</ion-select-option>
+                                        <ion-select-option value="GM">GMK</ion-select-option>
                                     </ion-select>
                                 </ion-item>
 
                                 <ion-item>
                                     <ion-label position="floating">Avance</ion-label>
-                                    <ion-input type="number" id="Cumplimiento"></ion-input>
+                                    <ion-input type="number" id="Cumplimiento" class="solo-numero" max="10"></ion-input>
                                 </ion-item>
 
                                 <ion-item>
