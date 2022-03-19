@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>GEMAK</title>
+  <!------ JQUERY PARA USAR AJAX ----->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <!-----------------------------------------------     IONIC     ---------------------------------------------------------------->
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+  <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+  <!-----------------------------------------------     FECHAS MOMENTS     ---------------------------------------------------------------->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+  <!-----------------------------------------------     JS     ---------------------------------------------------------------->
+  <script type="text/javascript" src="js/Usuarios.js"></script>
+  <!-----------------------------------------------     GRAFICAS     ---------------------------------------------------------------->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+
+<body>
+  <ion-app>
+
+    <!-- Cabezera -->
+    <ion-header>
+      <ion-toolbar color="dark">
+        <ion-buttons slot="start">
+          <ion-button href="/">
+            <ion-icon name="home"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <ion-title>Administrador</ion-title>
+
+        <!--  <ion-buttons slot="end">
+                    <p style="margin-right: 2.5em;">Total: <span id="total"></span></p>
+                </ion-buttons> -->
+      </ion-toolbar>
+    </ion-header>
+
+    <!-- Contenido -->
+    <ion-content>
+
+      <!-- Panel de proyectos -->
+      <ion-card>
+        <ion-item>
+          <ion-icon name="list-circle-sharp" slot="start"></ion-icon>
+          <ion-label>Panel de proyectos</ion-label>
+          <ion-button fill="outline" slot="end" href="/PanelProyectos">ir</ion-button>
+        </ion-item>
+
+        <ion-card-content>
+          Listado de proyectos activos.
+        </ion-card-content>
+      </ion-card>
+
+      <!-- Panel Usuarios -->
+      <ion-card>
+        <ion-item>
+          <ion-icon name="people-sharp" slot="start"></ion-icon>
+          <ion-label>Usuarios</ion-label>
+          <ion-button fill="outline" slot="end" id="ModalUsuarios" onclick="MostrarUsuarios()">ir</ion-button>
+        </ion-item>
+
+        <ion-card-content>
+          Administrar usuarios activos o agregar nuevos.
+        </ion-card-content>
+      </ion-card>
+
+      <!-- Panel Categorias -->
+      <ion-card>
+        <ion-item>
+          <ion-icon name="copy-sharp" slot="start"></ion-icon>
+          <ion-label>Categorias</ion-label>
+          <ion-button fill="outline" slot="end" id="ModalCategorias" onclick="MostrarCategorias()">ir</ion-button>
+        </ion-item>
+
+        <ion-card-content>
+          Agregar/Eliminar categorias.
+        </ion-card-content>
+      </ion-card>
+
+    </ion-content>
+
+ 
+    <!-- Modal nuevo usuarios -->
+    <ion-modal trigger="ModalUsuarios" id="ModalNuevoUsuarios">
+      <ion-header>
+        <ion-toolbar color="dark">
+          <ion-title>NUEVO USAURIO </ion-title>
+          <ion-buttons slot="primary">
+            <ion-button onClick="cerrarModalUser()">
+              <ion-icon slot="icon-only" name="close"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-card>
+          <ion-card-content>
+            <ion-item margin-vertical>
+              <ion-label position="floating">Usuario</ion-label>
+              <ion-input type="text" id="NombreUsuario"> </ion-input>
+            </ion-item>
+  
+            <ion-item margin-vertical>
+              <ion-label position="floating">Contraseña</ion-label>
+              <ion-input type="text" id="ContraseñaUsuario"> </ion-input>
+            </ion-item>
+  
+            <ion-item>
+              <ion-label>Nivel</ion-label>
+              <ion-select id="Nivel">
+                  <ion-select-option value="usuario">Usuario</ion-select-option>
+                  <ion-select-option value="admin">Administrador</ion-select-option>
+              </ion-select>
+          </ion-item> 
+  
+            <div margin-vertical text-right>
+              <ion-button id="Boton" onclick="RegistrarUsuario()">
+                <ion-icon name="add-circle" slot="start"></ion-icon>
+                Guardar
+              </ion-button>
+              <ion-button fill="outline" color="danger" id="button-cancel" onclick="LimpiarFormUser()">
+                <ion-icon name="trash" slot="start"></ion-icon>
+                Limpiar
+              </ion-button>
+            </div>
+          </ion-card-content>
+        </ion-card> 
+
+        <!-- List of Text Items -->
+        <ion-list id="listaUsuarios">
+        </ion-list>
+        <!--  -->
+      </ion-content>
+    </ion-modal>
+
+
+    <!-- Modal nueva categoria -->
+    <ion-modal trigger="ModalCategorias" id="ModalNuevaCategorias">
+      <ion-header>
+        <ion-toolbar color="dark">
+          <ion-title>NUEVA CATEGORIA</ion-title>
+          <ion-buttons slot="primary">
+            <ion-button onClick="cerrarModalCategoria()">
+              <ion-icon slot="icon-only" name="close"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-card>
+          <ion-card-content>
+            <ion-item margin-vertical>
+              <ion-label position="floating">Categoria</ion-label>
+              <ion-input type="text" id="NombreCategoria"> </ion-input>
+            </ion-item> 
+  
+            <div margin-vertical text-right>
+              <ion-button id="Boton" onclick="RegistrarCategoria()">
+                <ion-icon name="add-circle" slot="start"></ion-icon>
+                Guardar
+              </ion-button>
+              <ion-button fill="outline" color="danger" id="button-cancel" onclick="LimpiarFormCate()">
+                <ion-icon name="trash" slot="start"></ion-icon>
+                Limpiar
+              </ion-button>
+            </div>
+          </ion-card-content>
+        </ion-card> 
+
+        <!-- List of Text Items -->
+        <ion-list id="listaCategorias">
+        </ion-list>
+        <!--  -->
+      </ion-content>
+    </ion-modal>
+  </ion-app>
+
+
+  <div id="Item-Borrador" style="display: none;">
+    <ion-card>
+      <ion-card-content>
+        <!-- Borrador para lista de usuarios -->
+        <ion-item-sliding>
+          <ion-item>
+            <ion-label id="listNombreUser">Item</ion-label>
+          </ion-item>
+          <ion-item-options side="end">
+            <ion-item-option id="eliminarUsuario" color="danger">Eliminar</ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+
+
+  <div id="Item-BorradorCate" style="display: none;">
+    <ion-card>
+      <ion-card-content>
+        <!-- Borrador para lista de usuarios -->
+        <ion-item-sliding>
+          <ion-item>
+            <ion-label id="NombreCat">Item</ion-label>
+          </ion-item>
+          <ion-item-options side="end">
+            <ion-item-option id="eliminarCategoria" color="danger">Eliminar</ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+
+
+</body>
+
+</html>

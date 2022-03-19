@@ -213,9 +213,7 @@ function ActualizarTarea() {
         } else {
             alert("Faltan campos por llenar")
         }
-    }
-
-
+    } 
 }
 
 

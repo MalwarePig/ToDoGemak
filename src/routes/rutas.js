@@ -11,6 +11,15 @@ var reinicio = router.get('/', (req, res) => {
 	
 });
 
+router.get('/PanelProyectos', (req, res) => {
+	//res.send('holoo');
+	res.render('PanelProyectos.html'); 
+});
+
+router.get('/homeAdmin', (req, res) => {
+	//res.send('holoo');
+	res.render('homeAdmin.html'); 
+});
 
 var RegistroTareas = router.get('/NuevaTarea', (req, res) => {
 	//res.send('holoo');
@@ -19,8 +28,8 @@ var RegistroTareas = router.get('/NuevaTarea', (req, res) => {
 
 /////////////////////////////////////////////////////////////////////////// ENTRAR A HOME ///////////////////////////////////////////////////////////////////////////////
 //Carga pagina principal
-router.get('/home', UserController.HOME);
- 
+/* router.get('/home', UserController.HOME);
+  */
 //Mostrar formulario de nueva tarea
 router.get('/FormNuevaTarea', (req, res) => { 
 	res.render('RegistroTareas.html');
@@ -37,9 +46,7 @@ router.get('/ListarTareas/:param', ProjectosController.ListarTareas);
 router.get('/MostrarFormulario', (req, res) => { 
 	res.render('ListaTareas.html');
 });
- 
-
-
+  
 router.post('/registrarProyecto', ProjectosController.registrarProyecto);
 router.get('/Proyectos', ProjectosController.Proyectos);
 router.get('/tareasCompletas/:param', ProjectosController.tareasCompletas);
@@ -53,5 +60,25 @@ router.get('/Grafica', (req, res) => {
 router.get('/EstaCategoria/:param', ProjectosController.EstaCategoria);
 //Lee las tareas del proyecto Por persona
 router.get('/EstaPersonal/:param', ProjectosController.EstaPersonal);
+
+
+/* SESION */
+router.post('/IniciarSesion', UserController.login);
+//Lee todos los usuario
+router.get('/TodosUsuarios', UserController.TodosUsuarios);
+//Registrar usuario
+router.post('/RegistrarUsuario', UserController.RegistrarUsuario);
+//Eliminar usuario
+router.post('/EliminarUsuario', UserController.EliminarUsuario);
+
+/***********************/
+//Registrar usuario
+router.post('/RegistrarCategoria', UserController.RegistrarCategoria);
+//Lee todas los categorias
+router.get('/TodosCategorias', UserController.TodosCategorias);
+//Eliminar categoria
+router.post('/EliminarCategoria', UserController.EliminarCategoria);
+
+
 module.exports = router;
  
